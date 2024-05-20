@@ -1,0 +1,17 @@
+spring:
+  application:
+  name: WebBackEnd
+  datasource:
+    url: jdbc:mysql://localhost:3306/webbackend
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+springdoc:
+  swagger-ui:
+    path: swagger-ui.html
+    operations-sorter: method
