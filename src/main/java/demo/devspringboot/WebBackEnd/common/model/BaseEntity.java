@@ -1,8 +1,9 @@
 package demo.devspringboot.WebBackEnd.common.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.annotation.CreatedBy;
@@ -13,7 +14,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @SuperBuilder // Để lớp con kế thừa
 @MappedSuperclass // lớp con kế thừa -> triển khai xuống DB

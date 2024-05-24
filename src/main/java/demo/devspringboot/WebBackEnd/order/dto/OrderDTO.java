@@ -1,19 +1,20 @@
 package demo.devspringboot.WebBackEnd.order.dto;
 
-import demo.devspringboot.WebBackEnd.product.model.Product;
 import demo.devspringboot.WebBackEnd.user.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDTO {
+
     private UUID id;
     private UserDTO user;
-    private Set<Product>products;
+    private Set<OrderProductDTO>products;
+    private BigDecimal totalPrice;
 }

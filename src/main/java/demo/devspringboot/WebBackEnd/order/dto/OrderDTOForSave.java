@@ -1,16 +1,19 @@
 package demo.devspringboot.WebBackEnd.order.dto;
 
-import demo.devspringboot.WebBackEnd.user.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class OrderDTOForSave {
-    private UserDTO user;
+
+    private String  username;
+    private HashMap <UUID, Integer> productQuantityList;
 
 }

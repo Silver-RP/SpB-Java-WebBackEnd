@@ -1,18 +1,17 @@
 package demo.devspringboot.WebBackEnd.order.model;
 
 import demo.devspringboot.WebBackEnd.common.model.BaseEntity;
-import demo.devspringboot.WebBackEnd.product.model.Product;
 import demo.devspringboot.WebBackEnd.user.model.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @SuperBuilder
 @AllArgsConstructor
@@ -27,11 +26,9 @@ public class Order extends BaseEntity {
     )
     private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = OrderEntity.Order_Product.TABLE_NAME,
-            joinColumns = @JoinColumn(name = OrderEntity.Order_Product.ORDER_ID),
-            inverseJoinColumns = @JoinColumn(name = OrderEntity.Order_Product.PRODUCT_ID)
-    )
-    public Set<Product> products = new HashSet<>();
+    @OneToMany(mappedBy = OrderEntity.Order_Product.ORDER_MAPPED_ORDER_PRODUCT,
+                            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+
+    private Set<OrderProduct> orderProducts = new HashSet<>();
+    private BigDecimal totalPrice;
 }

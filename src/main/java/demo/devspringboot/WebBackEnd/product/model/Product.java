@@ -1,20 +1,16 @@
 package demo.devspringboot.WebBackEnd.product.model;
 
 import demo.devspringboot.WebBackEnd.common.model.BaseEntity;
-import demo.devspringboot.WebBackEnd.order.model.Order;
 import demo.devspringboot.WebBackEnd.order.model.OrderEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import demo.devspringboot.WebBackEnd.order.model.OrderProduct;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,6 +25,7 @@ public class Product extends BaseEntity {
     @Column (name = ProductEntity.PRODUCT_PRICE)
     private Double ProductPrice;
 
-    @ManyToMany(mappedBy = OrderEntity.Order_Product.ORDER_MAPPED_PRODUCT)
-    private Set<Order> orders = new HashSet<>();
+    @OneToMany (mappedBy = OrderEntity.Order_Product.PRODUCT_MAPPED_ORDER_PRODUCT,
+                            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<OrderProduct> ordersProduct = new HashSet<>();
 }

@@ -15,8 +15,7 @@ public class OrderEntity {
 
     public class Order_Product{
         public static final String TABLE_NAME = "WBE_ORDER_PRODUCT";
-        public static final String PRODUCT_ID = "PRODUCT_ID";
-        public static final String ORDER_ID = "ORDER_ID";
-        public static final String ORDER_MAPPED_PRODUCT = "products";
+        public static final String ORDER_MAPPED_ORDER_PRODUCT = "order"; //why is it sometime uppercase, sometimes lowercase
+        public static final String PRODUCT_MAPPED_ORDER_PRODUCT = "product";
     }
 }
