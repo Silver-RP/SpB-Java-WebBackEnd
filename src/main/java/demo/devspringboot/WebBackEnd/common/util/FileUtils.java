@@ -26,7 +26,7 @@ public class FileUtils {
         throw new WBEBussinessException("Can not save file: " + file.getOriginalFilename());
     }
 
-
+//a
     public static void deleteFile(String fileName) {
         try {
             Path file = FileUtils.ROOTPATH.resolve(fileName);
