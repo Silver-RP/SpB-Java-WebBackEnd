@@ -11,6 +11,13 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
+  security:
+    user:
+      name: admin
+      password: admin
+  servlet:
+    multipart:
+      enabled: true
 springdoc:
   swagger-ui:
     path: swagger-ui.html

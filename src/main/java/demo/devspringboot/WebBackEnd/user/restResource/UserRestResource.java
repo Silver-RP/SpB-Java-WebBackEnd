@@ -6,7 +6,9 @@ import demo.devspringboot.WebBackEnd.user.dto.UserDTOForSave;
 import demo.devspringboot.WebBackEnd.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -22,6 +24,11 @@ public class UserRestResource {
     @PostMapping("/register")
     public Object register(@RequestBody @Valid UserDTOForSave userDTOForSave){
         return ResponseUtil.get(userService.save(userDTOForSave), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/{username}/changeAvatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Object addAvatar(@PathVariable ("username") String username, @RequestPart("file") MultipartFile avatar){
+        return ResponseUtil.get(userService.changeAvatar(username, avatar), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")

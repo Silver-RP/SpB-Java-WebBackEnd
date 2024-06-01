@@ -15,4 +15,7 @@ public class UserDTO {
     private String userName;
     private int age;
     private String gender;
+    private String roles;
+    private String token;
+    private String avatar;
 }

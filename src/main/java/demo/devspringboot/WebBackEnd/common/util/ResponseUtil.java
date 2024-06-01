@@ -1,6 +1,5 @@
 package demo.devspringboot.WebBackEnd.common.util;
 
-import demo.devspringboot.WebBackEnd.common.exception.ExceptionUtil;
 import demo.devspringboot.WebBackEnd.common.model.ResponseDTO;
 import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.List;
 
 @UtilityClass
 public class ResponseUtil {
@@ -31,8 +29,9 @@ public class ResponseUtil {
                 ResponseDTO.builder()
                         .content(null)
                         .hasErrors(true)
-                        .errors(List.of(e.getMessage()))
+                        .errors(ExceptionUtil.getError(e))
                         .timestamp(String.valueOf(LocalDateTime.now()))
+
                         .status(httpStatus.value())
                         .build(),
                 httpStatus
@@ -45,6 +44,7 @@ public class ResponseUtil {
                         .content(null)
                         .hasErrors(true)
                         .errors(ExceptionUtil.getError(e))
+                        .content("R: Error.")
                         .timestamp(String.valueOf(LocalDateTime.now()))
                         .status(httpStatus.value())
                         .build(),

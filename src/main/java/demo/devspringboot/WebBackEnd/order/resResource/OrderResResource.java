@@ -5,6 +5,7 @@ import demo.devspringboot.WebBackEnd.order.dto.OrderDTO;
 import demo.devspringboot.WebBackEnd.order.dto.OrderDTOForSave;
 import demo.devspringboot.WebBackEnd.order.service.OrderService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -20,17 +21,20 @@ public class OrderResResource {
     }
 
     @GetMapping("/findAll")
+    @PreAuthorize("hasAuthority('WBE_ADMIN')")
     public Object findAll(){
         return ResponseUtil.get(orderService.findAll(OrderDTO.class), HttpStatus.OK);
     }
 
     @GetMapping("/findById")
-    public Object findAll(@RequestParam UUID id){
+    public Object findById(@RequestParam UUID id){
         return ResponseUtil.get(orderService.findById(id, OrderDTO.class), HttpStatus.OK);
     }
 
+
     @GetMapping("/findByUsername")
-    public Object findAll(@RequestParam String username){
+    @PreAuthorize("hasAuthority('WBE_USER')")
+    public Object findByUsername(@RequestParam String username){
         return ResponseUtil.get(orderService.findByUsername(username), HttpStatus.OK);
     }
 
